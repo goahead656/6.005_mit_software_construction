@@ -20,7 +20,8 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
     /*
      * Provide a ConcreteEdgesGraph for tests in GraphInstanceTest.
      */
-    @Override public Graph<String> emptyInstance() {
+    @Override
+    public Graph<String> emptyInstance() {
         return new ConcreteEdgesGraph();
     }
     
@@ -32,10 +33,31 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
     //   TODO
     
     // TODO tests for ConcreteEdgesGraph.toString()
+
+    @Test
+    public void testEmpty(){
+        Graph<String> graph = emptyInstance();
+        System.out.println(graph.toString());
+    }
+
+    @Test
+    public void testNonEmpty(){
+        Graph<String> graph = emptyInstance();
+        graph.add("1");
+        graph.add("2");
+        graph.set("1","2",1);
+        System.out.println(graph.toString());
+    }
     
     /*
      * Testing Edge...
      */
+
+    @Test
+    public void testVertices(){
+        Edge edge = new Edge("1","2",1);
+        assertEquals("The num of vertex of edge must be two. ",2, emptyInstance().vertices().size());
+    }
     
     // Testing strategy for Edge
     //   TODO

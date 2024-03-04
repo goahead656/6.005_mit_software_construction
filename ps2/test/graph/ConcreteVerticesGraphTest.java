@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+// 由于此处测试与上一个相同，所以此处对该测试进行简写
+
 /**
  * Tests for ConcreteVerticesGraph.
  * 
@@ -27,6 +29,13 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     /*
      * Testing ConcreteVerticesGraph...
      */
+    @Test
+    public void testNonEmpty(){
+        Graph<String> graph = emptyInstance();
+        graph.add("1");
+        graph.add("2");
+        System.out.println(graph.toString());
+    }
     
     // Testing strategy for ConcreteVerticesGraph.toString()
     //   TODO
@@ -36,6 +45,12 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     /*
      * Testing Vertex...
      */
+
+    @Test
+    public void testVertices(){
+        Graph<String> graph = emptyInstance();
+        assertEquals("The num of vertex of edge must be two.",0,graph.vertices().size());
+    }
     
     // Testing strategy for Vertex
     //   TODO

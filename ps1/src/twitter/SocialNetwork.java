@@ -45,8 +45,13 @@ public class SocialNetwork {
             String text = tweet.getText();
             String author = tweet.getAuthor();
             List<String> username = Extract.getUsername(text);
-            Set<String> hashset = new HashSet<>(username);
-            hashmap.put(author,hashset);
+//            judge your hashmap if your hashmap contains author
+            if(!hashmap.containsKey(author)){
+                Set<String> hashset = new HashSet<>(username);
+                hashmap.put(author,hashset);
+            }else{
+                hashmap.get(author).addAll(new HashSet<>(username));
+            }
         }
         return hashmap;
     }
