@@ -3,10 +3,19 @@
  */
 package poet;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import graph.Graph;
+import javafx.scene.shape.Path;
+
+import javax.annotation.processing.Filer;
 
 /**
  * A graph-based poetry generator.
@@ -53,7 +62,8 @@ import graph.Graph;
 public class GraphPoet {
     
     private final Graph<String> graph = Graph.empty();
-    
+
+
     // Abstraction function:
     //   TODO
     // Representation invariant:
@@ -68,10 +78,28 @@ public class GraphPoet {
      * @throws IOException if the corpus file cannot be found or read
      */
     public GraphPoet(File corpus) throws IOException {
-        throw new RuntimeException("not implemented");
+        BufferedReader buff = new BufferedReader(new FileReader(corpus));
+        String str;
+        while((str=buff.readLine()) != null){
+//            System.out.println(str);
+            String[] s1 = str.split(" ");
+            graph.add(s1[0].toLowerCase());
+            for(int i=1; i<s1.length; i++){
+                graph.add(s1[i].toLowerCase());
+                graph.set(s1[i-1].toLowerCase(),s1[i].toLowerCase(),1);
+            }
+        }
+
     }
     
     // TODO checkRep
+    /**
+     *
+     * @param graph a new graph
+     */
+    public void checkRep(Graph<String> graph){
+        assert graph.vertices() != null;
+    }
     
     /**
      * Generate a poem.
@@ -80,7 +108,30 @@ public class GraphPoet {
      * @return poem (as described above)
      */
     public String poem(String input) {
-        throw new RuntimeException("not implemented");
+        String[] s1 = input.split(" ");
+        System.out.println(input);
+        String start_text=s1[0].toLowerCase();
+        Map<String, Integer> targets = graph.targets(start_text);
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(s1[0]);
+        stringBuffer.append(" ");
+        while(!targets.isEmpty()){
+            // find the max weight source
+            int min = -1;
+            String str="";
+            for (String s : targets.keySet()) {
+                if(min < targets.get(s)){
+                    min=targets.get(s);
+                    str=s;
+                }
+            }
+            stringBuffer.append(str);
+            stringBuffer.append(" ");
+            targets = graph.targets(str);
+//            System.out.println(targets.toString());
+//            System.out.println(stringBuffer.toString());
+        }
+        return stringBuffer.toString();
     }
     
     // TODO toString()

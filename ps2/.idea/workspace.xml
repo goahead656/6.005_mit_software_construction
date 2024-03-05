@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e76ddee-1aa9-4d02-ab4d-80bd70be0406" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../git_exercise/hello-git" beforeDir="false" afterPath="$PROJECT_DIR$/../git_exercise/hello-git" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ps1/src/twitter/SocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ps1/src/twitter/SocialNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/ConcreteEdgesGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/ConcreteEdgesGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/ConcreteVerticesGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/ConcreteVerticesGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/graph/ConcreteEdgesGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/graph/ConcreteEdgesGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/graph/ConcreteVerticesGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/graph/ConcreteVerticesGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/graph/GraphInstanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/graph/GraphInstanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poet/GraphPoet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/poet/GraphPoet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +39,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/code_file/JAVA/6.005_mit_software_construction/ps2",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -52,7 +47,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GraphStaticTest.testEmptyVerticesEmpty">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="poet.Main" />
       <module name="ps2" />
@@ -82,7 +77,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConcreteEdgesGraphTest.testAssertionsEnabled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConcreteEdgesGraphTest.testTargets" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ps2" />
       <extension name="coverage">
         <pattern>
@@ -92,23 +87,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="graph" />
       <option name="MAIN_CLASS_NAME" value="graph.ConcreteEdgesGraphTest" />
-      <option name="METHOD_NAME" value="testAssertionsEnabled" />
+      <option name="METHOD_NAME" value="testTargets" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConcreteVerticesGraphTest.testAddExistingVertex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GraphPoetTest.testAssertionsEnabled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ps2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="graph.*" />
+          <option name="PATTERN" value="poet.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="graph" />
-      <option name="MAIN_CLASS_NAME" value="graph.ConcreteVerticesGraphTest" />
-      <option name="METHOD_NAME" value="testAddExistingVertex" />
+      <option name="PACKAGE_NAME" value="poet" />
+      <option name="MAIN_CLASS_NAME" value="poet.GraphPoetTest" />
+      <option name="METHOD_NAME" value="testAssertionsEnabled" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -132,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ConcreteEdgesGraphTest.testTargets" />
+        <item itemvalue="JUnit.GraphPoetTest.testAssertionsEnabled" />
         <item itemvalue="JUnit.GraphStaticTest.testEmptyVerticesEmpty" />
         <item itemvalue="JUnit.ConcreteEdgesGraphTest.testAdd" />
-        <item itemvalue="JUnit.ConcreteEdgesGraphTest.testAssertionsEnabled" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.ConcreteVerticesGraphTest.testAddExistingVertex" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +143,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709525284413</updated>
-      <workItem from="1709525285759" duration="20104000" />
+      <workItem from="1709525285759" duration="27347000" />
+      <workItem from="1709631535508" duration="1500000" />
     </task>
     <servers />
   </component>
