@@ -15,12 +15,12 @@ import java.util.regex.Pattern;
 
 /**
  * Console interface to the expression system.
- * 
+ *
  * <p>PS3 instructions: you are free to change this user interface class.
  */
 public class Main {
-    
-    
+
+
     /**
      * Read expression and command inputs from the console and output results.
      * An empty input terminates the program.
@@ -29,19 +29,19 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        Optional<String> currentExpression = Optional.empty();
-        
+        Optional<Expression> currentExpression = Optional.empty();
+
         while (true) {
             System.out.print("> ");
             final String input = in.readLine();
-            
+
             if (input.isEmpty()) {
                 return; // exits the program
             }
-            
+
             try {
                 final String output;
-                
+
                 if (input.startsWith(DIFFERENTIATE_PREFIX)) {
                     final String variable = parseDifferentiate(input);
                     output = Commands.differentiate(currentExpression.get(), variable);
@@ -55,7 +55,7 @@ public class Main {
                     output = expression.toString();
                     currentExpression = Optional.of(output);
                 }
-                
+
                 System.out.println(output);
             } catch (NoSuchElementException nse) {
                 // currentExpression was empty
@@ -65,7 +65,7 @@ public class Main {
             }
         }
     }
- 
+
     private static final String DIFFERENTIATE_PREFIX = "!d/d";
     private static final String VARIABLE = "[A-Za-z]+";
     private static final String DIFFERENTIATE = DIFFERENTIATE_PREFIX + "(" + VARIABLE + ") *";
@@ -79,17 +79,17 @@ public class Main {
         final String variable = commandMatcher.group(1);
         return variable;
     }
-    
+
     private static final String SIMPLIFY_PREFIX = "!simplify";
     private static final String ASSIGNMENT = "(" + VARIABLE + ") *= *([^ ]+)";
-    private static final String SIMPLIFY = SIMPLIFY_PREFIX + "( +" + ASSIGNMENT + ")* *";    
+    private static final String SIMPLIFY = SIMPLIFY_PREFIX + "( +" + ASSIGNMENT + ")* *";
 
     private static Map<String,Double> parseSimpify(final String input) {
         final Matcher commandMatcher = Pattern.compile(SIMPLIFY).matcher(input);
         if (!commandMatcher.matches()) {
             throw new CommandSyntaxException("usage: !simplify var1=val1 var2=val2 ...");
         }
-        
+
         final Map<String,Double> environment = new HashMap<>();
         final Matcher argumentMatcher = Pattern.compile(ASSIGNMENT).matcher(input);
         while (argumentMatcher.find()) {
@@ -102,12 +102,12 @@ public class Main {
         //System.out.println(environment);
         return environment;
     }
-    
+
     public static class CommandSyntaxException extends RuntimeException {
         private static final long serialVersionUID = 1;
         public CommandSyntaxException(String message) {
             super(message);
         }
     }
-    
+
 }

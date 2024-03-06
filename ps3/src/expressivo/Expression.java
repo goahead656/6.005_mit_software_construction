@@ -3,6 +3,8 @@
  */
 package expressivo;
 
+import java.util.*;
+
 /**
  * An immutable data type representing a polynomial expression of:
  *   + and *
@@ -18,7 +20,19 @@ public interface Expression {
     
     // Datatype definition
     //   TODO
-    
+
+    /**
+     * Expression = Constant(Double) +
+     *              Variable(String) +
+     *              Addition(leftExpr, rightExpr) +
+     *              Multiplication(leftExpr, rightExpr)
+     *
+     *  Safty from rep exposure:
+     *  All fields are immutable
+     *
+     */
+
+
     /**
      * Parse an expression.
      * @param input expression to parse, as defined in the PS3 handout.
@@ -26,6 +40,7 @@ public interface Expression {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static Expression parse(String input) {
+//        return Parser.parse(input);
         throw new RuntimeException("unimplemented");
     }
     
@@ -53,5 +68,22 @@ public interface Expression {
     public int hashCode();
     
     // TODO more instance methods
+
+    /**
+     * differentiation operarion of the expression towards
+     * @param var: a variable of which the expression derivate
+     * @return:
+     *      the derivative expression
+     */
+    public Expression differentiate(Variable var);
+
+    /**
+     * Simplifying a expression with the variable. evaluate the expression with the variable.
+     *
+     * @param var: any variable, either appears in the expression or not
+     * @param value: the value of the variable
+     * @return Evaluated expression
+     */
+    Expression simplify(Variable var, Double value);
     
 }

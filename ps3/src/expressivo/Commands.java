@@ -3,6 +3,7 @@
  */
 package expressivo;
 
+import java.security.Key;
 import java.util.Map;
 
 /**
@@ -23,8 +24,8 @@ public class Commands {
      *         to the derivative, but doesn't need to be in simplest or canonical form.
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
-    public static String differentiate(String expression, String variable) {
-        throw new RuntimeException("unimplemented");
+    public static Expression differentiate(Expression expression, Variable variable) {
+        return expression.differentiate(variable);
     }
     
     /**
@@ -39,8 +40,14 @@ public class Commands {
      *         Additional simplifications to the expression may be done at the implementor's discretion.
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static String simplify(String expression, Map<String,Double> environment) {
-        throw new RuntimeException("unimplemented");
+    public static Expression simplify(Expression expression, Map<Character,Double> environment) {
+        Expression ieterExpression=expression;
+        for(Character key : environment.keySet()){
+            Double value = environment.get(key);
+            Variable variable = new Variable(key);
+            ieterExpression = ieterExpression.simplify(variable,value);
+        }
+        return ieterExpression;
     }
     
 }

@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e76ddee-1aa9-4d02-ab4d-80bd70be0406" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../abcplayer.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../git_exercise/hello-git" beforeDir="false" afterPath="$PROJECT_DIR$/../git_exercise/hello-git" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poet/GraphPoet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/poet/GraphPoet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ps0.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ps1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ps2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ps3.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ps4.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/code_file/JAVA/6.005_mit_software_construction/ps2",
+    "last_opened_file_path": "D:/code_file/JAVA/6.005_mit_software_construction/ps3",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -144,7 +148,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709525284413</updated>
       <workItem from="1709525285759" duration="27347000" />
-      <workItem from="1709631535508" duration="1500000" />
+      <workItem from="1709631535508" duration="1564000" />
     </task>
     <servers />
   </component>

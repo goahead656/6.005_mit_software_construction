@@ -61,7 +61,6 @@ public class ExpressionParser extends Parser {
   }
 
   @Override
-
   public Vocabulary getVocabulary() {
     return VOCABULARY;
   }
