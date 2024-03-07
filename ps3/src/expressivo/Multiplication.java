@@ -2,10 +2,10 @@ package expressivo;
 
 import java.util.Objects;
 
-public class Multiplication implements Expression{
-    private final Expression leftExpression;
-    private final Expression rightExpression;
-    private Expression ex;
+public class Multiplication<L> implements Expression<L>{
+    private final Expression<L> leftExpression;
+    private final Expression<L> rightExpression;
+    private Expression<L> ex;
 
 
     /**
@@ -21,7 +21,7 @@ public class Multiplication implements Expression{
      *
      */
 
-    public Multiplication(Expression leftExpression, Expression rightExpression) {
+    public Multiplication(Expression<L> leftExpression, Expression<L> rightExpression) {
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
     }
@@ -50,13 +50,13 @@ public class Multiplication implements Expression{
     }
 
     @Override
-    public Expression differentiate(Variable var) {
+    public Expression<L> differentiate(Variable var) {
         return new Addition(new Multiplication(leftExpression.differentiate(var),rightExpression),
                             new Multiplication(leftExpression,rightExpression.differentiate(var)));
     }
 
     @Override
-    public Expression simplify(Variable var, Double value) {
+    public Expression<L> simplify(Variable var, Double value) {
         return new Multiplication(leftExpression.simplify(var,value),rightExpression.simplify(var,value));
     }
 }

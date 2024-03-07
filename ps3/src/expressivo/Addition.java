@@ -27,6 +27,8 @@ public class Addition implements Expression{
         this.rightExpression = rightExpression;
     }
 
+
+
     public void checkRep(){
         assert (this.leftExpression != null);
         assert (this.rightExpression != null);

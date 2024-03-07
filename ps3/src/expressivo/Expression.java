@@ -3,6 +3,14 @@
  */
 package expressivo;
 
+import expressivo.parser.ExpressionLexer;
+import expressivo.parser.ExpressionListener;
+import expressivo.parser.ExpressionParser;
+import org.antlr.runtime.ANTLRInputStream;
+import org.antlr.runtime.CharStream;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -16,7 +24,7 @@ import java.util.*;
  * You may, however, add additional methods, or strengthen the specs of existing methods.
  * Declare concrete variants of Expression in their own Java source files.
  */
-public interface Expression {
+public interface Expression<L> {
     
     // Datatype definition
     //   TODO
@@ -39,9 +47,13 @@ public interface Expression {
      * @return expression AST for the input
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) {
-//        return Parser.parse(input);
-        throw new RuntimeException("unimplemented");
+    public static Expression parse(String input) throws IOException {
+        byte[] bytes = input.getBytes();
+        CharStream stream = CharStreams.fromString(input);
+        ExpressionLexer expressionLexer = new ExpressionLexer(antlrInputStream);
+
+
+
     }
     
     /**
@@ -75,7 +87,7 @@ public interface Expression {
      * @return:
      *      the derivative expression
      */
-    public Expression differentiate(Variable var);
+    public Expression<L> differentiate(Variable var);
 
     /**
      * Simplifying a expression with the variable. evaluate the expression with the variable.
@@ -84,6 +96,6 @@ public interface Expression {
      * @param value: the value of the variable
      * @return Evaluated expression
      */
-    Expression simplify(Variable var, Double value);
+    public Expression<L> simplify(Variable var, Double value);
     
 }
