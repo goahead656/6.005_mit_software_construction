@@ -1,4 +1,4 @@
-// Generated from Expression.g4 by ANTLR 4.5.1
+// Generated from ..\src\expressivo\parser\Expression.g4 by ANTLR 4.5.1
 
 package expressivo.parser;
 // Do not edit this .java file! Edit the grammar in Expression.g4 and re-run Antlr.

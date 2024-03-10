@@ -6,7 +6,6 @@ package expressivo;
 import expressivo.parser.ExpressionLexer;
 import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser;
-import org.antlr.runtime.tree.CommonTree;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.gui.Trees;
 import org.antlr.v4.runtime.*;

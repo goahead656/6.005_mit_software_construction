@@ -1,4 +1,4 @@
-// Generated from Expression.g4 by ANTLR 4.5.1
+// Generated from ..\src\expressivo\parser\Expression.g4 by ANTLR 4.5.1
 
 package expressivo.parser;
 // Do not edit this .java file! Edit the grammar in Expression.g4 and re-run Antlr.
@@ -116,6 +116,11 @@ public class ExpressionParser extends Parser {
     public void exitRule(ParseTreeListener listener) {
       if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitRoot(this);
     }
+    @Override
+    public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+      if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitRoot(this);
+      else return visitor.visitChildren(this);
+    }
   }
 
   public final RootContext root() throws RecognitionException {
@@ -168,6 +173,11 @@ public class ExpressionParser extends Parser {
     public void exitRule(ParseTreeListener listener) {
       if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitAddOrSub(this);
     }
+    @Override
+    public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+      if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitAddOrSub(this);
+      else return visitor.visitChildren(this);
+    }
   }
   public static class SingleContext extends ExprContext {
     public ExprContext expr() {
@@ -182,6 +192,11 @@ public class ExpressionParser extends Parser {
     public void exitRule(ParseTreeListener listener) {
       if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitSingle(this);
     }
+    @Override
+    public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+      if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitSingle(this);
+      else return visitor.visitChildren(this);
+    }
   }
   public static class LieteralContext extends ExprContext {
     public TerminalNode INT() { return getToken(ExpressionParser.INT, 0); }
@@ -193,6 +208,11 @@ public class ExpressionParser extends Parser {
     @Override
     public void exitRule(ParseTreeListener listener) {
       if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitLieteral(this);
+    }
+    @Override
+    public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+      if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitLieteral(this);
+      else return visitor.visitChildren(this);
     }
   }
   public static class MultiOrDivContext extends ExprContext {
@@ -210,6 +230,11 @@ public class ExpressionParser extends Parser {
     @Override
     public void exitRule(ParseTreeListener listener) {
       if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitMultiOrDiv(this);
+    }
+    @Override
+    public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+      if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitMultiOrDiv(this);
+      else return visitor.visitChildren(this);
     }
   }
 
