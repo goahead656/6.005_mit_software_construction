@@ -21,15 +21,15 @@ public interface ExpressionListener extends ParseTreeListener {
    */
   void exitRoot(ExpressionParser.RootContext ctx);
   /**
-   * Enter a parse tree produced by {@link ExpressionParser#sum}.
+   * Enter a parse tree produced by {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void enterSum(ExpressionParser.SumContext ctx);
+  void enterExpr(ExpressionParser.ExprContext ctx);
   /**
-   * Exit a parse tree produced by {@link ExpressionParser#sum}.
+   * Exit a parse tree produced by {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void exitSum(ExpressionParser.SumContext ctx);
+  void exitExpr(ExpressionParser.ExprContext ctx);
   /**
    * Enter a parse tree produced by {@link ExpressionParser#primitive}.
    * @param ctx the parse tree

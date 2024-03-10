@@ -39,17 +39,21 @@ public class Constant implements Expression{
         return Objects.hash(value);
     }
 
-
-
     @Override
-    public Expression differentiate(Variable var) {
-        return new Constant(0.0);
+    public double value() {
+        return value;
     }
 
-    @Override
-    public Expression simplify(Variable var, Double value) {
-        return this;
-    }
+
+//    @Override
+//    public Expression differentiate(Variable var) {
+//        return new Constant(0.0);
+//    }
+//
+//    @Override
+//    public Expression simplify(Variable var, Double value) {
+//        return this;
+//    }
 
     @Override
     public String toString() {

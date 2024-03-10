@@ -48,17 +48,22 @@ public class Addition implements Expression{
     }
 
     @Override
+    public double value() {
+        return leftExpression.value() + rightExpression.value();
+    }
+
+    @Override
     public String toString() {
         return leftExpression.toString() + "+" + rightExpression.toString();
     }
 
-    @Override
-    public Expression differentiate(Variable var) {
-        return new Addition(leftExpression.differentiate(var),rightExpression.differentiate(var));
-    }
-
-    @Override
-    public Expression simplify(Variable var, Double value) {
-        return new Addition(leftExpression.simplify(var,value),rightExpression.simplify(var,value));
-    }
+//    @Override
+//    public Expression differentiate(Variable var) {
+//        return new Addition(leftExpression.differentiate(var),rightExpression.differentiate(var));
+//    }
+//
+//    @Override
+//    public Expression simplify(Variable var, Double value) {
+//        return new Addition(leftExpression.simplify(var,value),rightExpression.simplify(var,value));
+//    }
 }

@@ -6,9 +6,14 @@ package expressivo;
 import expressivo.parser.ExpressionLexer;
 import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser;
-import org.antlr.runtime.ANTLRInputStream;
-import org.antlr.runtime.CharStream;
+import org.antlr.runtime.tree.ParseTree;
+import org.antlr.v4.gui.Trees;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
+import javax.sound.midi.Soundbank;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.*;
@@ -24,7 +29,7 @@ import java.util.*;
  * You may, however, add additional methods, or strengthen the specs of existing methods.
  * Declare concrete variants of Expression in their own Java source files.
  */
-public interface Expression<L> {
+public interface Expression {
     
     // Datatype definition
     //   TODO
@@ -47,14 +52,7 @@ public interface Expression<L> {
      * @return expression AST for the input
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) throws IOException {
-        byte[] bytes = input.getBytes();
-        CharStream stream = CharStreams.fromString(input);
-        ExpressionLexer expressionLexer = new ExpressionLexer(antlrInputStream);
 
-
-
-    }
     
     /**
      * @return a parsable representation of this expression, such that
@@ -81,21 +79,25 @@ public interface Expression<L> {
     
     // TODO more instance methods
 
-    /**
-     * differentiation operarion of the expression towards
-     * @param var: a variable of which the expression derivate
-     * @return:
-     *      the derivative expression
-     */
-    public Expression<L> differentiate(Variable var);
+    public double value();
 
-    /**
-     * Simplifying a expression with the variable. evaluate the expression with the variable.
-     *
-     * @param var: any variable, either appears in the expression or not
-     * @param value: the value of the variable
-     * @return Evaluated expression
-     */
-    public Expression<L> simplify(Variable var, Double value);
-    
+//    /**
+//     * differentiation operarion of the expression towards
+//     * @param var: a variable of which the expression derivate
+//     * @return:
+//     *      the derivative expression
+//     */
+//    public Expression<L> differentiate(Variable var);
+//
+//    /**
+//     * Simplifying a expression with the variable. evaluate the expression with the variable.
+//     *
+//     * @param var: any variable, either appears in the expression or not
+//     * @param value: the value of the variable
+//     * @return Evaluated expression
+//     */
+//    public Expression<L> simplify(Variable var, Double value);
 }
+
+
+

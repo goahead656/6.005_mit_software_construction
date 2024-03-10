@@ -2,10 +2,10 @@ package expressivo;
 
 import java.util.Objects;
 
-public class Multiplication<L> implements Expression<L>{
-    private final Expression<L> leftExpression;
-    private final Expression<L> rightExpression;
-    private Expression<L> ex;
+public class Multiplication implements Expression{
+    private final Expression leftExpression;
+    private final Expression rightExpression;
+    private Expression ex;
 
 
     /**
@@ -21,7 +21,7 @@ public class Multiplication<L> implements Expression<L>{
      *
      */
 
-    public Multiplication(Expression<L> leftExpression, Expression<L> rightExpression) {
+    public Multiplication(Expression leftExpression, Expression rightExpression) {
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
     }
@@ -45,18 +45,23 @@ public class Multiplication<L> implements Expression<L>{
     }
 
     @Override
+    public double value() {
+        return leftExpression.value() * rightExpression.value();
+    }
+
+    @Override
     public String toString() {
         return leftExpression.toString() + "*" + rightExpression.toString();
     }
 
-    @Override
-    public Expression<L> differentiate(Variable var) {
-        return new Addition(new Multiplication(leftExpression.differentiate(var),rightExpression),
-                            new Multiplication(leftExpression,rightExpression.differentiate(var)));
-    }
-
-    @Override
-    public Expression<L> simplify(Variable var, Double value) {
-        return new Multiplication(leftExpression.simplify(var,value),rightExpression.simplify(var,value));
-    }
+//    @Override
+//    public Expression<L> differentiate(Variable var) {
+//        return new Addition(new Multiplication(leftExpression.differentiate(var),rightExpression),
+//                            new Multiplication(leftExpression,rightExpression.differentiate(var)));
+//    }
+//
+//    @Override
+//    public Expression<L> simplify(Variable var, Double value) {
+//        return new Multiplication(leftExpression.simplify(var,value),rightExpression.simplify(var,value));
+//    }
 }
