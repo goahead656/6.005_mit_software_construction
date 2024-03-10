@@ -15,11 +15,14 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.BufferedReader;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.Literal;
 
 /**
  * Console interface to the expression system.
@@ -97,7 +100,7 @@ public class Main {
         Trees.inspect(tree, parser);
 
         // *** Debugging option #3: walk the tree with a listener
-        new ParseTreeWalker().walk(new PrintEverything(), tree);
+//        new ParseTreeWalker().walk(new PrintEverything(), tree);
 
         MakeExpression exprMaker = new MakeExpression();
         new ParseTreeWalker().walk(exprMaker, tree);
@@ -167,46 +170,66 @@ public class Main {
 }
 
 
-/** Print out parse tree nodes to System.err as they are visited. */
-class PrintEverything implements ExpressionListener {
-
-    @Override public void enterRoot(ExpressionParser.RootContext context) {
-        System.err.println("entering root");
-    }
-    @Override public void exitRoot(ExpressionParser.RootContext context) {
-        System.err.println("exiting root");
-    }
-
-    @Override
-    public void enterExpr(ExpressionParser.ExprContext ctx) {
-        System.err.println("entering expr");
-    }
-
-    @Override
-    public void exitExpr(ExpressionParser.ExprContext ctx) {
-        System.err.println("exiting expr");
-    }
-
-    @Override
-    public void enterPrimitive(ExpressionParser.PrimitiveContext ctx) {
-        System.err.println("entering primitive");
-    }
-
-    @Override
-    public void exitPrimitive(ExpressionParser.PrimitiveContext ctx) {
-        System.err.println("exiting primitive");
-    }
-
-
-    @Override public void visitTerminal(TerminalNode terminal) {
-        System.err.println("terminal " + terminal.getText());
-    }
-
-    // don't need these here, so just make them empty implementations
-    @Override public void enterEveryRule(ParserRuleContext context) { }
-    @Override public void exitEveryRule(ParserRuleContext context) { }
-    @Override public void visitErrorNode(ErrorNode node) { }
-}
+///** Print out parse tree nodes to System.err as they are visited. */
+//class PrintEverything implements ExpressionListener {
+//
+//    @Override public void enterRoot(ExpressionParser.RootContext context) {
+//        System.err.println("entering root");
+//    }
+//    @Override public void exitRoot(ExpressionParser.RootContext context) {
+//        System.err.println("exiting root");
+//    }
+//
+//    @Override
+//    public void enterAddOrSub(ExpressionParser.AddOrSubContext ctx) {
+//        System.err.println("entering addOrSub");
+//    }
+//
+//    @Override
+//    public void exitAddOrSub(ExpressionParser.AddOrSubContext ctx) {
+//        System.err.println("exiting addOrSub");
+//    }
+//
+//    @Override
+//    public void enterSingle(ExpressionParser.SingleContext ctx) {
+//        System.err.println("entering single");
+//    }
+//
+//    @Override
+//    public void exitSingle(ExpressionParser.SingleContext ctx) {
+//        System.err.println("exiting single");
+//    }
+//
+//    @Override
+//    public void enterLieteral(ExpressionParser.LieteralContext ctx) {
+//        System.err.println("entering literal");
+//    }
+//
+//    @Override
+//    public void exitLieteral(ExpressionParser.LieteralContext ctx) {
+//        System.err.println("exiting literal");
+//    }
+//
+//    @Override
+//    public void enterMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) {
+//        System.err.println("entering multiOrDiv");
+//    }
+//
+//    @Override
+//    public void exitMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) {
+//        System.err.println("exiting multiOrDiv");
+//    }
+//
+//
+//    @Override public void visitTerminal(TerminalNode terminal) {
+//        System.err.println("terminal " + terminal.getText());
+//    }
+//
+//    // don't need these here, so just make them empty implementations
+//    @Override public void enterEveryRule(ParserRuleContext context) { }
+//    @Override public void exitEveryRule(ParserRuleContext context) { }
+//    @Override public void visitErrorNode(ErrorNode node) { }
+//}
 
 class MakeExpression implements ExpressionListener {
     private Stack<Expression> stack = new Stack<>();
@@ -248,99 +271,105 @@ class MakeExpression implements ExpressionListener {
     }
 
     @Override
-    public void enterExpr(ExpressionParser.ExprContext context) {}
+    public void enterAddOrSub(ExpressionParser.AddOrSubContext ctx) {
+        System.out.println("entering addOrSub");
 
-    @Override
-    public void exitExpr(ExpressionParser.ExprContext context) {
-        System.out.println("context content"+context.getText());
-        System.out.println(context.getChildCount());
-        if(context.getChildCount()==3){
-            if(context.getChild(1).getText().equals("+")){
-                List<ExpressionParser.PrimitiveContext> addends = context.primitive();
-                assert stack.size() >= addends.size();
-
-                // the pattern above always has at least 1 child;
-                // pop the last child
-                assert addends.size() > 0;
-                Expression sum = stack.pop();
-
-                // pop the older children, one by one, and add them on
-                for (int i = 1; i < addends.size(); ++i) {
-//            System.out.println("addends.size() = " + addends.size());
-                    sum = new Addition(stack.pop(), sum);
-                }
-
-                // the result is this subtree's IntegerExpression
-                stack.push(sum);
-            }
-            else{
-                List<ExpressionParser.PrimitiveContext> addends = context.primitive();
-                assert stack.size() >= addends.size();
-
-                // the pattern above always has at least 1 child;
-                // pop the last child
-                assert addends.size() > 0;
-                Expression sum = stack.pop();
-
-                // pop the older children, one by one, and add them on
-                for (int i = 1; i < addends.size(); ++i) {
-//            System.out.println("addends.size() = " + addends.size());
-                    sum = new Multiplication(stack.pop(), sum);
-                }
-
-                // the result is this subtree's IntegerExpression
-                stack.push(sum);
-            }
-        }
-        else{
-            int n = context.getChildCount();
-            for(int i=1;i<n;i+=2){
-                if(context.getChild(i).getText().equals("+")){
-                    Expression sum = new Addition(stack.pop(), stack.pop());
-                    stack.push(sum);
-                }
-                else{
-                    Expression sum = new Multiplication(stack.pop(), stack.pop());
-                    stack.push(sum);
-                }
-            }
-        }
-//        System.out.println(context.getRuleContext());
-        // matched the primitive ('+' primitive)* rule
-//        List<ExpressionParser.PrimitiveContext> addends = context.primitive();
-//        assert stack.size() >= addends.size();
-//
-//        // the pattern above always has at least 1 child;
-//        // pop the last child
-//        assert addends.size() > 0;
-//        Expression sum = stack.pop();
-//
-//
-//        // pop the older children, one by one, and add them on
-//        for (int i = 1; i < addends.size(); ++i) {
-////            System.out.println("addends.size() = " + addends.size());
-//            sum = new Addition(stack.pop(), sum);
-//        }
-//
-//        // the result is this subtree's IntegerExpression
-//        stack.push(sum);
+//        System.out.println(ctx.getText());
     }
 
     @Override
-    public void enterPrimitive(ExpressionParser.PrimitiveContext ctx) {}
+    public void exitAddOrSub(ExpressionParser.AddOrSubContext ctx) {
+        System.out.println("ctx length"+ctx.getText().length());
+        System.out.println("ctx content"+ctx.getText());
+        String operator = ctx.getChild(1).getText();
+        System.out.println("operator"+operator);
+
+        List<ExpressionParser.ExprContext> expr = ctx.expr();
+//        Expression right = stack.pop();
+//        Expression left = stack.pop();
+//        for(int i=0;i<expr.size();i++){
+//            System.out.print(expr.get(i).getText());
+//        }
+//        System.out.println();
+        assert stack.size() >= expr.size();
+
+        // the pattern above always has at least 1 child;
+        // pop the last child
+        assert expr.size() > 0;
+        Expression sum = stack.pop();
+        if(operator.equals("+")) {
+            sum = new Addition(stack.pop(), sum);
+        }else{
+            sum = new Subtraction(stack.pop(), sum);
+        }
+
+        // pop the older children, one by one, and add them on
+//        for (int i = 1; i < expr.size(); ++i) {
+//            sum = new Addition(stack.pop(), sum);
+//        }
+
+        // the result is this subtree's IntegerExpression
+        stack.push(sum);
+        System.out.println("exiting addOrSub");
+    }
 
     @Override
-    public void exitPrimitive(ExpressionParser.PrimitiveContext context) {
-//        System.out.println(context.getText());
-        if (context.NUMBER() != null) {
-            // matched the NUMBER alternative
-            double n = Double.valueOf(context.NUMBER().getText());
-            Expression number = new Constant(n);
-            stack.push(number);
-        } else {
-            // matched the '(' sum ')' alternative
-            // do nothing, because sum's value is already on the stack
+    public void enterSingle(ExpressionParser.SingleContext ctx) {
+        // do nothing
+        System.out.println("entering single");
+    }
+
+    @Override
+    public void exitSingle(ExpressionParser.SingleContext ctx) {
+        // do nothing
+        System.out.println("exiting single");
+        System.out.println(ctx.getText());
+//        stack.push(new Constant(Double.valueOf(ctx.getText())));
+    }
+
+    @Override
+    public void enterLieteral(ExpressionParser.LieteralContext ctx) {
+        // do nothing
+        System.out.println("entering literal");
+    }
+
+    @Override
+    public void exitLieteral(ExpressionParser.LieteralContext ctx) {
+        // do nothing
+        System.out.println(ctx.getText());
+        System.out.println("exiting literal");
+        stack.push(new Constant(Double.valueOf(ctx.getText())));
+    }
+
+    @Override
+    public void enterMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) {
+        // do nothing
+        System.out.println("entering multiOrDiv");
+    }
+
+    @Override
+    public void exitMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) {
+        // do nothing
+        List<ExpressionParser.ExprContext> expr = ctx.expr();
+        assert stack.size() >= expr.size();
+
+        String operator = ctx.getChild(1).getText();
+        System.out.println("operator"+operator);
+
+        // the pattern above always has at least 1 child;
+        // pop the last child
+        assert expr.size() > 0;
+        Expression multiplicate = stack.pop();
+
+        if(operator.equals("*")) {
+            multiplicate = new Multiplication(stack.pop(), multiplicate);
+        }else{
+            multiplicate = new Division(stack.pop(), multiplicate);
         }
+
+        // the result is this subtree's IntegerExpression
+        stack.push(multiplicate);
+        System.out.println("exiting multiOrDiv");
     }
 
 

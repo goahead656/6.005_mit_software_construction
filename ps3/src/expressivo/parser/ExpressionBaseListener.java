@@ -31,25 +31,49 @@ public class ExpressionBaseListener implements ExpressionListener {
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void enterExpr(ExpressionParser.ExprContext ctx) { }
+  @Override public void enterAddOrSub(ExpressionParser.AddOrSubContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void exitExpr(ExpressionParser.ExprContext ctx) { }
+  @Override public void exitAddOrSub(ExpressionParser.AddOrSubContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void enterPrimitive(ExpressionParser.PrimitiveContext ctx) { }
+  @Override public void enterSingle(ExpressionParser.SingleContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void exitPrimitive(ExpressionParser.PrimitiveContext ctx) { }
+  @Override public void exitSingle(ExpressionParser.SingleContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
+  @Override public void enterLieteral(ExpressionParser.LieteralContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
+  @Override public void exitLieteral(ExpressionParser.LieteralContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
+  @Override public void enterMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
+  @Override public void exitMultiOrDiv(ExpressionParser.MultiOrDivContext ctx) { }
 
   /**
    * {@inheritDoc}

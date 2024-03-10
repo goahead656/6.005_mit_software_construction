@@ -21,23 +21,51 @@ public interface ExpressionListener extends ParseTreeListener {
    */
   void exitRoot(ExpressionParser.RootContext ctx);
   /**
-   * Enter a parse tree produced by {@link ExpressionParser#expr}.
+   * Enter a parse tree produced by the {@code AddOrSub}
+   * labeled alternative in {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void enterExpr(ExpressionParser.ExprContext ctx);
+  void enterAddOrSub(ExpressionParser.AddOrSubContext ctx);
   /**
-   * Exit a parse tree produced by {@link ExpressionParser#expr}.
+   * Exit a parse tree produced by the {@code AddOrSub}
+   * labeled alternative in {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void exitExpr(ExpressionParser.ExprContext ctx);
+  void exitAddOrSub(ExpressionParser.AddOrSubContext ctx);
   /**
-   * Enter a parse tree produced by {@link ExpressionParser#primitive}.
+   * Enter a parse tree produced by the {@code Single}
+   * labeled alternative in {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void enterPrimitive(ExpressionParser.PrimitiveContext ctx);
+  void enterSingle(ExpressionParser.SingleContext ctx);
   /**
-   * Exit a parse tree produced by {@link ExpressionParser#primitive}.
+   * Exit a parse tree produced by the {@code Single}
+   * labeled alternative in {@link ExpressionParser#expr}.
    * @param ctx the parse tree
    */
-  void exitPrimitive(ExpressionParser.PrimitiveContext ctx);
+  void exitSingle(ExpressionParser.SingleContext ctx);
+  /**
+   * Enter a parse tree produced by the {@code Lieteral}
+   * labeled alternative in {@link ExpressionParser#expr}.
+   * @param ctx the parse tree
+   */
+  void enterLieteral(ExpressionParser.LieteralContext ctx);
+  /**
+   * Exit a parse tree produced by the {@code Lieteral}
+   * labeled alternative in {@link ExpressionParser#expr}.
+   * @param ctx the parse tree
+   */
+  void exitLieteral(ExpressionParser.LieteralContext ctx);
+  /**
+   * Enter a parse tree produced by the {@code MultiOrDiv}
+   * labeled alternative in {@link ExpressionParser#expr}.
+   * @param ctx the parse tree
+   */
+  void enterMultiOrDiv(ExpressionParser.MultiOrDivContext ctx);
+  /**
+   * Exit a parse tree produced by the {@code MultiOrDiv}
+   * labeled alternative in {@link ExpressionParser#expr}.
+   * @param ctx the parse tree
+   */
+  void exitMultiOrDiv(ExpressionParser.MultiOrDivContext ctx);
 }
